@@ -55,10 +55,8 @@ install_version() {
 
 	(
 		mkdir -p "$install_path/$version"
-		cd $install_path/$version
-		python3 -m venv .venv
-		$install_path/$version/.venv/bin/python3 $ASDF_DOWNLOAD_PATH/setup.py install
-		cd -
+		python3 -m venv $install_path/$version/.venv
+		$install_path/$version/.venv/bin/pip install localstack==$version
 
 		local tool_cmd
 		tool_cmd="$(echo "$TOOL_TEST" | cut -d' ' -f1)"
