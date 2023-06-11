@@ -4,7 +4,7 @@ set -euo pipefail
 
 GH_REPO="https://github.com/localstack/localstack"
 TOOL_NAME="localstack"
-TOOL_TEST=".venv/bin/localstack --version"
+TOOL_TEST="bin/localstack --version"
 
 fail() {
 	echo -e "asdf-$TOOL_NAME: $*"
@@ -55,9 +55,9 @@ install_version() {
 
 	(
 		mkdir -p "$install_path"
-		python3 -m venv $install_path/.venv
-		$install_path/.venv/bin/pip install wheel
-		$install_path/.venv/bin/pip install localstack==$version
+		python3 -m venv $install_path
+		$install_path/bin/pip install wheel
+		$install_path/bin/pip install localstack==$version
 
 		local tool_cmd
 		tool_cmd="$(echo "$TOOL_TEST" | cut -d' ' -f1)"
