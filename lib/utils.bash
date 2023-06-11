@@ -56,6 +56,7 @@ install_version() {
 	(
 		mkdir -p "$install_path/$version"
 		python3 -m venv $install_path/$version/.venv
+		$install_path/$version/.venv/bin/pip install wheel
 		$install_path/$version/.venv/bin/pip install localstack==$version
 
 		local tool_cmd
